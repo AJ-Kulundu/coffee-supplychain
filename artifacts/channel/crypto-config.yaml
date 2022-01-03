@@ -1,0 +1,112 @@
+OrdererOrgs:
+  # ---------------------------------------------------------------------------
+  # Orderer
+  # ---------------------------------------------------------------------------
+
+  - Name: Orderer
+    Domain: coffee-chain.net
+    EnableNodeOUs: true
+
+  # ---------------------------------------------------------------------------
+  # "Specs" - See PeerOrgs below for complete description
+  # ---------------------------------------------------------------------------
+    Specs:
+      - Hostname: orderer
+        SANS:
+            - "localhost"
+            - "127.0.0.1"
+
+# ---------------------------------------------------------------------------
+# "PeerOrgs" - Definition of organizations managing peer nodes
+# ---------------------------------------------------------------------------
+PeerOrgs:
+
+  # ---------------------------------------------------------------------------
+  # Admin
+  # ---------------------------------------------------------------------------
+  - Name: admin
+    Domain: admin.example.com
+    EnableNodeOUs: true
+
+    Template:
+      Count: 2
+      SANS:
+       - "localhost"
+    
+    Users:
+      Count: 1
+
+  # ---------------------------------------------------------------------------
+  # Inspector
+  # ---------------------------------------------------------------------------
+  - Name: inspector
+    Domain: inspector.example.com
+    EnableNodeOUs: true
+
+    Template:
+      Count: 2
+      SANS:
+       - "localhost"
+
+    Users:
+      Count: 1
+
+  # ---------------------------------------------------------------------------
+  # Harvester
+  # ---------------------------------------------------------------------------
+  - Name: harvester
+    Domain: harvester.example.com
+    EnableNodeOUs: true
+
+    Template:
+      Count: 2
+      SANS:
+       - "localhost"
+
+    Users:
+      Count: 1
+
+  # ---------------------------------------------------------------------------
+  # Exporter
+  # ---------------------------------------------------------------------------
+  - Name: exporter
+    Domain: exporter.example.com
+    EnableNodeOUs: true
+
+    Template:
+      Count: 2
+      SANS:
+       - "localhost"
+
+    Users:
+      Count: 1
+
+  # ---------------------------------------------------------------------------
+  # Importer
+  # ---------------------------------------------------------------------------
+  - Name: importer
+    Domain: importer.example.com
+    EnableNodeOUs: true
+
+    Template:
+      Count: 2
+      SANS:
+       - "localhost"
+
+    Users:
+      Count: 1
+
+  # ---------------------------------------------------------------------------
+  # Processor
+  # ---------------------------------------------------------------------------
+  - Name: processor
+    Domain: processor.example.com
+    EnableNodeOUs: true
+
+    Template:
+      Count: 2
+      SANS:
+       - "localhost"
+
+    Users:
+      Count: 1

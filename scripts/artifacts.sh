@@ -1,0 +1,1 @@
+cryptogen generate --config=../artifacts/channel/crypto-config.yaml --output=../artifacts/channel/crypto-config/
