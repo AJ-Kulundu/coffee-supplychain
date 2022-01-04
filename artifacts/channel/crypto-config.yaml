@@ -25,7 +25,7 @@ PeerOrgs:
   # Admin
   # ---------------------------------------------------------------------------
   - Name: admin
-    Domain: admin.example.com
+    Domain: admin.coffee-chain.net
     EnableNodeOUs: true
 
     Template:
@@ -40,7 +40,7 @@ PeerOrgs:
   # Inspector
   # ---------------------------------------------------------------------------
   - Name: inspector
-    Domain: inspector.example.com
+    Domain: inspector.coffee-chain.net
     EnableNodeOUs: true
 
     Template:
@@ -55,7 +55,7 @@ PeerOrgs:
   # Harvester
   # ---------------------------------------------------------------------------
   - Name: harvester
-    Domain: harvester.example.com
+    Domain: harvester.coffee-chain.net
     EnableNodeOUs: true
 
     Template:
@@ -70,7 +70,7 @@ PeerOrgs:
   # Exporter
   # ---------------------------------------------------------------------------
   - Name: exporter
-    Domain: exporter.example.com
+    Domain: exporter.coffee-chain.net
     EnableNodeOUs: true
 
     Template:
@@ -85,7 +85,7 @@ PeerOrgs:
   # Importer
   # ---------------------------------------------------------------------------
   - Name: importer
-    Domain: importer.example.com
+    Domain: importer.coffee-chain.net
     EnableNodeOUs: true
 
     Template:
@@ -100,7 +100,7 @@ PeerOrgs:
   # Processor
   # ---------------------------------------------------------------------------
   - Name: processor
-    Domain: processor.example.com
+    Domain: processor.coffee-chain.net
     EnableNodeOUs: true
 
     Template:
