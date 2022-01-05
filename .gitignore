@@ -1,2 +1,10 @@
 artifacts/channel/crypto-config/
 token.txt
+artifacts/channel/AdminMSPanchors.tx
+artifacts/channel/ExporterMSPanchors.tx
+artifacts/channel/HarvesterMSPanchors.tx
+artifacts/channel/ImporterMSPanchors.tx
+artifacts/channel/InspectorMSPanchors.tx
+artifacts/channel/ProcessorMSPanchors.tx
+artifacts/channel/genesis.block
+artifacts/channel/mychannel.tx
