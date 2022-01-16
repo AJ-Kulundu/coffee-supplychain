@@ -1,0 +1,818 @@
+version: '2'
+
+networks:
+   coffee:
+
+
+services:
+  ca-admin:
+    image: hyperledger/fabric-ca
+    environment:
+      - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
+      - FABRIC_CA_SERVER_CA_NAME=ca.admin.coffee-chain.net
+      - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.admin.coffee-chain.net-cert.pem
+      - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/priv_sk
+      - FABRIC_CA_SERVER_TLS_ENABLED=true
+      - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-tls/tlsca.admin.coffee-chain.net-cert.pem
+      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-tls/priv_sk
+    ports:
+      - "7054:7054"
+    command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
+    volumes:
+      - ./channel/crypto-config/peerOrganizations/admin.coffee-chain.net/ca/:/etc/hyperledger/fabric-ca-server-config
+      - ./channel/crypto-config/peerOrganizations/admin.coffee-chain.net/tlsca/:/etc/hyperledger/fabric-ca-server-tls
+    container_name: ca.admin.coffee-chain.net
+    hostname: ca.admin.coffee-chain.net
+    networks:
+      - coffee
+
+  ca-inspector:
+    image: hyperledger/fabric-ca
+    environment:
+      - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
+      - FABRIC_CA_SERVER_CA_NAME=ca.inspector.coffee-chain.net
+      - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.inspector.coffee-chain.net-cert.pem
+      - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/priv_sk
+      - FABRIC_CA_SERVER_TLS_ENABLED=true
+      - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-tls/tlsca.inspector.coffee-chain.net-cert.pem
+      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-tls/priv_sk
+    ports:
+      - "8054:7054"
+    command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
+    volumes:
+      - ./channel/crypto-config/peerOrganizations/inspector.coffee-chain.net/ca/:/etc/hyperledger/fabric-ca-server-config
+      - ./channel/crypto-config/peerOrganizations/inspector.coffee-chain.net/tlsca/:/etc/hyperledger/fabric-ca-server-tls
+    container_name: ca.inspector.coffee-chain.net
+    hostname: ca.inspector.coffee-chain.net
+    networks:
+      - coffee
+
+  ca-harvester:
+    image: hyperledger/fabric-ca
+    environment:
+      - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
+      - FABRIC_CA_SERVER_CA_NAME=ca.harvester.coffee-chain.net
+      - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.harvester.coffee-chain.net-cert.pem
+      - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/priv_sk
+      - FABRIC_CA_SERVER_TLS_ENABLED=true
+      - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-tls/tlsca.harvester.coffee-chain.net-cert.pem
+      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-tls/priv_sk
+    ports:
+      - "9054:7054"
+    command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
+    volumes:
+      - ./channel/crypto-config/peerOrganizations/harvester.coffee-chain.net/ca/:/etc/hyperledger/fabric-ca-server-config
+      - ./channel/crypto-config/peerOrganizations/harvester.coffee-chain.net/tlsca/:/etc/hyperledger/fabric-ca-server-tls
+    container_name: ca.harvester.coffee-chain.net
+    hostname: ca.harvester.coffee-chain.net
+    networks:
+      - coffee
+
+  ca-exporter:
+    image: hyperledger/fabric-ca
+    environment:
+      - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
+      - FABRIC_CA_SERVER_CA_NAME=ca.exporter.coffee-chain.net
+      - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.exporter.coffee-chain.net-cert.pem
+      - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/priv_sk
+      - FABRIC_CA_SERVER_TLS_ENABLED=true
+      - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-tls/tlsca.exporter.coffee-chain.net-cert.pem
+      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-tls/priv_sk
+    ports:
+      - "10054:7054"
+    command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
+    volumes:
+      - ./channel/crypto-config/peerOrganizations/exporter.coffee-chain.net/ca/:/etc/hyperledger/fabric-ca-server-config
+      - ./channel/crypto-config/peerOrganizations/exporter.coffee-chain.net/tlsca/:/etc/hyperledger/fabric-ca-server-tls
+    container_name: ca.exporter.coffee-chain.net
+    hostname: ca.exporter.coffee-chain.net
+    networks:
+      - coffee
+
+  ca-importer:
+    image: hyperledger/fabric-ca
+    environment:
+      - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
+      - FABRIC_CA_SERVER_CA_NAME=ca.importer.coffee-chain.net
+      - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.importer.coffee-chain.net-cert.pem
+      - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/priv_sk
+      - FABRIC_CA_SERVER_TLS_ENABLED=true
+      - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-tls/tlsca.importer.coffee-chain.net-cert.pem
+      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-tls/priv_sk
+    ports:
+      - "11054:7054"
+    command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
+    volumes:
+      - ./channel/crypto-config/peerOrganizations/importer.coffee-chain.net/ca/:/etc/hyperledger/fabric-ca-server-config
+      - ./channel/crypto-config/peerOrganizations/importer.coffee-chain.net/tlsca/:/etc/hyperledger/fabric-ca-server-tls
+    container_name: ca.importer.coffee-chain.net
+    hostname: ca.importer.coffee-chain.net
+    networks:
+      - coffee
+
+  ca-processor:
+    image: hyperledger/fabric-ca
+    environment:
+      - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
+      - FABRIC_CA_SERVER_CA_NAME=ca.processor.coffee-chain.net
+      - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.processor.coffee-chain.net-cert.pem
+      - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/priv_sk
+      - FABRIC_CA_SERVER_TLS_ENABLED=true
+      - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-tls/tlsca.processor.coffee-chain.net-cert.pem
+      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-tls/priv_sk
+    ports:
+      - "12054:7054"
+    command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
+    volumes:
+      - ./channel/crypto-config/peerOrganizations/processor.coffee-chain.net/ca/:/etc/hyperledger/fabric-ca-server-config
+      - ./channel/crypto-config/peerOrganizations/processor.coffee-chain.net/tlsca/:/etc/hyperledger/fabric-ca-server-tls
+    container_name: ca.processor.coffee-chain.net
+    hostname: ca.processor.coffee-chain.net
+    networks:
+      - coffee
+
+  orderer.coffee-chain.net:
+    container_name: orderer.coffee-chain.net
+    image: hyperledger/fabric-orderer:2.1
+    dns_search: .
+    environment:
+      - ORDERER_GENERAL_LOGLEVEL=info
+      - FABRIC_LOGGING_SPEC=INFO
+      - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
+      - ORDERER_GENERAL_GENESISMETHOD=file
+      - ORDERER_GENERAL_GENESISFILE=/var/hyperledger/orderer/genesis.block
+      - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
+      - ORDERER_GENERAL_LOCALMSPDIR=/var/hyperledger/orderer/msp
+      - ORDERER_GENERAL_TLS_ENABLED=true
+      - ORDERER_GENERAL_TLS_PRIVATEKEY=/var/hyperledger/orderer/tls/server.key
+      - ORDERER_GENERAL_TLS_CERTIFICATE=/var/hyperledger/orderer/tls/server.crt
+      - ORDERER_GENERAL_TLS_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
+      - ORDERER_KAFKA_VERBOSE=true
+      - ORDERER_GENERAL_CLUSTER_CLIENTCERTIFICATE=/var/hyperledger/orderer/tls/server.crt
+      - ORDERER_GENERAL_CLUSTER_CLIENTPRIVATEKEY=/var/hyperledger/orderer/tls/server.key
+      - ORDERER_GENERAL_CLUSTER_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
+      - ORDERER_METRICS_PROVIDER=prometheus
+      - ORDERER_OPERATIONS_LISTENADDRESS=0.0.0.0:8443
+      - ORDERER_GENERAL_LISTENPORT=7050
+    working_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderers
+    command: orderer
+    ports:
+      - 7050:7050
+      - 8443:8443
+    networks:
+      - coffee
+    volumes:
+      - ./channel/genesis.block:/var/hyperledger/orderer/genesis.block
+      - ./channel/crypto-config/ordererOrganizations/coffee-chain.net/orderers/orderer.coffee-chain.net/msp:/var/hyperledger/orderer/msp
+      - ./channel/crypto-config/ordererOrganizations/coffee-chain.net/orderers/orderer.coffee-chain.net/tls:/var/hyperledger/orderer/tls
+
+  couchdb0:
+    container_name: couchdb0
+    image: hyperledger/fabric-couchdb
+    environment:
+      - COUCHDB_USER=
+      - COUCHDB_PASSWORD=
+    ports:
+      - 5984:5984
+    networks:
+      - coffee
+
+  couchdb1:
+    container_name: couchdb1
+    image: hyperledger/fabric-couchdb
+    environment:
+      - COUCHDB_USER=
+      - COUCHDB_PASSWORD=
+    ports:
+      - 6984:5984
+    networks:
+      - coffee
+
+  couchdb2:
+    container_name: couchdb2
+    image: hyperledger/fabric-couchdb
+    environment:
+      - COUCHDB_USER=
+      - COUCHDB_PASSWORD=
+    ports:
+      - 7984:5984
+    networks:
+      - coffee
+
+  couchdb3:
+    container_name: couchdb3
+    image: hyperledger/fabric-couchdb
+    environment:
+      - COUCHDB_USER=
+      - COUCHDB_PASSWORD=
+    ports:
+      - 8984:5984
+    networks:
+      - coffee
+
+  couchdb4:
+    container_name: couchdb4
+    image: hyperledger/fabric-couchdb
+    environment:
+      - COUCHDB_USER=
+      - COUCHDB_PASSWORD=
+    ports:
+      - 9984:5984
+    networks:
+      - coffee
+
+  couchdb5:
+    container_name: couchdb5
+    image: hyperledger/fabric-couchdb
+    environment:
+      - COUCHDB_USER=
+      - COUCHDB_PASSWORD=
+    ports:
+      - 10984:5984
+    networks:
+      - coffee
+
+  couchdb6:
+    container_name: couchdb6
+    image: hyperledger/fabric-couchdb
+    environment:
+      - COUCHDB_USER=
+      - COUCHDB_PASSWORD=
+    ports:
+      - 11984:5984
+    networks:
+      - coffee
+
+  couchdb7:
+    container_name: couchdb7
+    image: hyperledger/fabric-couchdb
+    environment:
+      - COUCHDB_USER=
+      - COUCHDB_PASSWORD=
+    ports:
+      - 12984:5984
+    networks:
+      - coffee
+
+  couchdb8:
+    container_name: couchdb8
+    image: hyperledger/fabric-couchdb
+    environment:
+      - COUCHDB_USER=
+      - COUCHDB_PASSWORD=
+    ports:
+      - 13984:5984
+    networks:
+      - coffee
+
+  couchdb9:
+    container_name: couchdb9
+    image: hyperledger/fabric-couchdb
+    environment:
+      - COUCHDB_USER=
+      - COUCHDB_PASSWORD=
+    ports:
+      - 14984:5984
+    networks:
+      - coffee
+
+  couchdb10:
+    container_name: couchdb10
+    image: hyperledger/fabric-couchdb
+    environment:
+      - COUCHDB_USER=
+      - COUCHDB_PASSWORD=
+    ports:
+      - 15984:5984
+    networks:
+      - coffee
+
+  couchdb11:
+    container_name: couchdb11
+    image: hyperledger/fabric-couchdb
+    environment:
+      - COUCHDB_USER=
+      - COUCHDB_PASSWORD=
+    ports:
+      - 16984:5984
+    networks:
+      - coffee
+
+  peer0.admin.coffee-chain.net:
+    container_name: peer0.admin.coffee-chain.net
+    extends:
+      file: base.yaml
+      service: peer-base
+    environment:
+      - FABRIC_LOGGING_SPEC=DEBUG
+      - ORDERER_GENERAL_LOGLEVEL=DEBUG
+      - CORE_PEER_LOCALMSPID=AdminMSP
+
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_test
+
+      - CORE_PEER_ID=peer0.admin.coffee-chain.net
+      - CORE_PEER_ADDRESS=peer0.admin.coffee-chain.net:7051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:7051
+      - CORE_PEER_CHAINCODEADDRESS=peer0.admin.coffee-chain.net:7052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.admin.coffee-chain.net:8051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.admin.coffee-chain.net:7051
+
+      # - CORE_OPERATIONS_LISTENADDRESS=0.0.0.0:9440
+
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb0:5984
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=
+      - CORE_METRICS_PROVIDER=prometheus
+      - CORE_PEER_TLS_ENABLED=true
+      - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/crypto/peer/tls/server.crt
+      - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/crypto/peer/tls/server.key
+      - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/crypto/peer/tls/ca.crt
+      - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/crypto/peer/msp
+    
+      - couchdb0
+    ports:
+      - 7051:7051
+    volumes:
+      - ./channel/crypto-config/peerOrganizations/admin.coffee-chain.net/peers/peer0.admin.coffee-chain.net/msp:/etc/hyperledger/crypto/peer/msp
+      - ./channel/crypto-config/peerOrganizations/admin.coffee-chain.net/peers/peer0.admin.coffee-chain.net/tls:/etc/hyperledger/crypto/peer/tls
+      - /var/run/:/host/var/run/
+      - ./channel/:/etc/hyperledger/channel/
+      - /var/arnold/peer0-admin:/var/hyperledger/production
+    networks:
+      - coffee
+
+  peer1.admin.coffee-chain.net:
+    container_name: peer1.admin.coffee-chain.net
+    extends:
+      file: base.yaml
+      service: peer-base
+    environment:
+      - FABRIC_LOGGING_SPEC=DEBUG
+      - ORDERER_GENERAL_LOGLEVEL=debug
+      - CORE_PEER_LOCALMSPID=AdminMSP
+
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_test
+
+      - CORE_PEER_ID=peer1.admin.coffee-chain.net
+      - CORE_PEER_ADDRESS=peer1.admin.coffee-chain.net:8051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:8051
+      - CORE_PEER_CHAINCODEADDRESS=peer1.admin.coffee-chain.net:8052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:8052
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.admin.coffee-chain.net:8051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.admin.coffee-chain.net:7051
+
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb1:5984
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=
+      - CORE_METRICS_PROVIDER=prometheus
+      # - CORE_OPERATIONS_LISTENADDRESS=0.0.0.0:9440
+      - CORE_PEER_TLS_ENABLED=true
+      - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/crypto/peer/tls/server.crt
+      - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/crypto/peer/tls/server.key
+      - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/crypto/peer/tls/ca.crt
+      - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/crypto/peer/msp
+    ports:
+      - 8051:8051
+    volumes:
+      - ./channel/crypto-config/peerOrganizations/admin.coffee-chain.net/peers/peer1.admin.coffee-chain.net/msp:/etc/hyperledger/crypto/peer/msp
+      - ./channel/crypto-config/peerOrganizations/admin.coffee-chain.net/peers/peer1.admin.coffee-chain.net/tls:/etc/hyperledger/crypto/peer/tls
+      - /var/run/:/host/var/run/
+      - ./channel/:/etc/hyperledger/channel/
+      - /var/arnold/peer1-admin:/var/hyperledger/production
+    networks:
+      - coffee
+
+  peer0.inspector.coffee-chain.net:
+    container_name: peer0.inspector.coffee-chain.net
+    extends:
+      file: base.yaml
+      service: peer-base
+    environment:
+      - FABRIC_LOGGING_SPEC=DEBUG
+      - ORDERER_GENERAL_LOGLEVEL=DEBUG
+      - CORE_PEER_LOCALMSPID=InspectorMSP
+
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_test
+
+      - CORE_PEER_ID=peer0.inspector.coffee-chain.net
+      - CORE_PEER_ADDRESS=peer0.inspector.coffee-chain.net:9051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:9051
+      - CORE_PEER_CHAINCODEADDRESS=peer0.inspector.coffee-chain.net:9052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:9052
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.inspector.coffee-chain.net:10051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.inspector.coffee-chain.net:9051
+
+      # - CORE_OPERATIONS_LISTENADDRESS=0.0.0.0:9440
+
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb2:5984
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=
+      - CORE_METRICS_PROVIDER=prometheus
+      - CORE_PEER_TLS_ENABLED=true
+      - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/crypto/peer/tls/server.crt
+      - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/crypto/peer/tls/server.key
+      - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/crypto/peer/tls/ca.crt
+      - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/crypto/peer/msp
+    ports:
+      - 9051:9051
+    volumes:
+      - ./channel/crypto-config/peerOrganizations/inspector.coffee-chain.net/peers/peer0.inspector.coffee-chain.net/msp:/etc/hyperledger/crypto/peer/msp
+      - ./channel/crypto-config/peerOrganizations/inspector.coffee-chain.net/peers/peer0.inspector.coffee-chain.net/tls:/etc/hyperledger/crypto/peer/tls
+      - /var/run/:/host/var/run/
+      - ./channel/:/etc/hyperledger/channel/
+      - /var/arnold/peer0-inspector:/var/hyperledger/production
+    networks:
+      - coffee
+
+  peer1.inspector.coffee-chain.net:
+    container_name: peer1.inspector.coffee-chain.net
+    extends:
+      file: base.yaml
+      service: peer-base
+    environment:
+      - FABRIC_LOGGING_SPEC=DEBUG
+      - ORDERER_GENERAL_LOGLEVEL=debug
+      - CORE_PEER_LOCALMSPID=InspectorMSP
+
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_test
+
+      - CORE_PEER_ID=peer1.inspector.coffee-chain.net
+      - CORE_PEER_ADDRESS=peer1.inspector.coffee-chain.net:10051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:10051
+      - CORE_PEER_CHAINCODEADDRESS=peer1.inspector.coffee-chain.net:10052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:10052
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.inspector.coffee-chain.net:10051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.inspector.coffee-chain.net:9051
+
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb3:5984
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=
+      - CORE_METRICS_PROVIDER=prometheus
+      # - CORE_OPERATIONS_LISTENADDRESS=0.0.0.0:9440
+      - CORE_PEER_TLS_ENABLED=true
+      - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/crypto/peer/tls/server.crt
+      - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/crypto/peer/tls/server.key
+      - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/crypto/peer/tls/ca.crt
+      - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/crypto/peer/msp
+    ports:
+      - 10051:10051
+    volumes:
+      - ./channel/crypto-config/peerOrganizations/inspector.coffee-chain.net/peers/peer1.inspector.coffee-chain.net/msp:/etc/hyperledger/crypto/peer/msp
+      - ./channel/crypto-config/peerOrganizations/inspector.coffee-chain.net/peers/peer1.inspector.coffee-chain.net/tls:/etc/hyperledger/crypto/peer/tls
+      - /var/run/:/host/var/run/
+      - ./channel/:/etc/hyperledger/channel/
+      - /var/arnold/peer1-inspector:/var/hyperledger/production
+    networks:
+      - coffee
+
+  peer0.harvester.coffee-chain.net:
+    container_name: peer0.harvester.coffee-chain.net
+    extends:
+      file: base.yaml
+      service: peer-base
+    environment:
+      - FABRIC_LOGGING_SPEC=DEBUG
+      - ORDERER_GENERAL_LOGLEVEL=DEBUG
+      - CORE_PEER_LOCALMSPID=AdminMSP
+
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_test
+
+      - CORE_PEER_ID=peer0.harvester.coffee-chain.net
+      - CORE_PEER_ADDRESS=peer0.harvester.coffee-chain.net:11051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:11051
+      - CORE_PEER_CHAINCODEADDRESS=peer0.harvester.coffee-chain.net:11052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:11052
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.harvester.coffee-chain.net:12051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.harvester.coffee-chain.net:11051
+
+      # - CORE_OPERATIONS_LISTENADDRESS=0.0.0.0:9440
+
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb4:5984
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=
+      - CORE_METRICS_PROVIDER=prometheus
+      - CORE_PEER_TLS_ENABLED=true
+      - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/crypto/peer/tls/server.crt
+      - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/crypto/peer/tls/server.key
+      - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/crypto/peer/tls/ca.crt
+      - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/crypto/peer/msp
+    
+    ports:
+      - 11051:11051
+    volumes:
+      - ./channel/crypto-config/peerOrganizations/harvester.coffee-chain.net/peers/peer0.harvester.coffee-chain.net/msp:/etc/hyperledger/crypto/peer/msp
+      - ./channel/crypto-config/peerOrganizations/harvester.coffee-chain.net/peers/peer0.harvester.coffee-chain.net/tls:/etc/hyperledger/crypto/peer/tls
+      - /var/run/:/host/var/run/
+      - ./channel/:/etc/hyperledger/channel/
+      - /var/arnold/peer0-harvester:/var/hyperledger/production
+    networks:
+      - coffee
+
+  peer1.harvester.coffee-chain.net:
+    container_name: peer1.harvester.coffee-chain.net
+    extends:
+      file: base.yaml
+      service: peer-base
+    environment:
+      - FABRIC_LOGGING_SPEC=DEBUG
+      - ORDERER_GENERAL_LOGLEVEL=debug
+      - CORE_PEER_LOCALMSPID=AdminMSP
+
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_test
+
+      - CORE_PEER_ID=peer1.harvester.coffee-chain.net
+      - CORE_PEER_ADDRESS=peer1.harvester.coffee-chain.net:12051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:12051
+      - CORE_PEER_CHAINCODEADDRESS=peer1.harvester.coffee-chain.net:12052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:12052
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.harvester.coffee-chain.net:12051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.harvester.coffee-chain.net:11051
+
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb5:5984
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=
+      - CORE_METRICS_PROVIDER=prometheus
+      # - CORE_OPERATIONS_LISTENADDRESS=0.0.0.0:9440
+      - CORE_PEER_TLS_ENABLED=true
+      - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/crypto/peer/tls/server.crt
+      - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/crypto/peer/tls/server.key
+      - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/crypto/peer/tls/ca.crt
+      - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/crypto/peer/msp
+    ports:
+      - 12051:12051
+    volumes:
+      - ./channel/crypto-config/peerOrganizations/harvester.coffee-chain.net/peers/peer1.harvester.coffee-chain.net/msp:/etc/hyperledger/crypto/peer/msp
+      - ./channel/crypto-config/peerOrganizations/harvester.coffee-chain.net/peers/peer1.harvester.coffee-chain.net/tls:/etc/hyperledger/crypto/peer/tls
+      - /var/run/:/host/var/run/
+      - ./channel/:/etc/hyperledger/channel/
+      - /var/arnold/peer1-harvester:/var/hyperledger/production
+    networks:
+      - coffee
+
+  peer0.exporter.coffee-chain.net:
+    container_name: peer0.exporter.coffee-chain.net
+    extends:
+      file: base.yaml
+      service: peer-base
+    environment:
+      - FABRIC_LOGGING_SPEC=DEBUG
+      - ORDERER_GENERAL_LOGLEVEL=DEBUG
+      - CORE_PEER_LOCALMSPID=AdminMSP
+
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_test
+
+      - CORE_PEER_ID=peer0.exporter.coffee-chain.net
+      - CORE_PEER_ADDRESS=peer0.exporter.coffee-chain.net:13051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:13051
+      - CORE_PEER_CHAINCODEADDRESS=peer0.exporter.coffee-chain.net:13052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:13052
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.exporter.coffee-chain.net:14051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.exporter.coffee-chain.net:13051
+
+      # - CORE_OPERATIONS_LISTENADDRESS=0.0.0.0:9440
+
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb6:5984
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=
+      - CORE_METRICS_PROVIDER=prometheus
+      - CORE_PEER_TLS_ENABLED=true
+      - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/crypto/peer/tls/server.crt
+      - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/crypto/peer/tls/server.key
+      - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/crypto/peer/tls/ca.crt
+      - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/crypto/peer/msp
+    
+      - couchdb0
+    ports:
+      - 13051:13051
+    volumes:
+      - ./channel/crypto-config/peerOrganizations/exporter.coffee-chain.net/peers/peer0.exporter.coffee-chain.net/msp:/etc/hyperledger/crypto/peer/msp
+      - ./channel/crypto-config/peerOrganizations/exporter.coffee-chain.net/peers/peer0.exporter.coffee-chain.net/tls:/etc/hyperledger/crypto/peer/tls
+      - /var/run/:/host/var/run/
+      - ./channel/:/etc/hyperledger/channel/
+      - /var/arnold/peer0-exporter:/var/hyperledger/production
+    networks:
+      - coffee
+
+  peer1.exporter.coffee-chain.net:
+    container_name: peer1.exporter.coffee-chain.net
+    extends:
+      file: base.yaml
+      service: peer-base
+    environment:
+      - FABRIC_LOGGING_SPEC=DEBUG
+      - ORDERER_GENERAL_LOGLEVEL=debug
+      - CORE_PEER_LOCALMSPID=AdminMSP
+
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_test
+
+      - CORE_PEER_ID=peer1.exporter.coffee-chain.net
+      - CORE_PEER_ADDRESS=peer1.exporter.coffee-chain.net:14051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:14051
+      - CORE_PEER_CHAINCODEADDRESS=peer1.exporter.coffee-chain.net:14052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:8052
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.exporter.coffee-chain.net:14051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.exporter.coffee-chain.net:13051
+
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb7:5984
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=
+      - CORE_METRICS_PROVIDER=prometheus
+      # - CORE_OPERATIONS_LISTENADDRESS=0.0.0.0:9440
+      - CORE_PEER_TLS_ENABLED=true
+      - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/crypto/peer/tls/server.crt
+      - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/crypto/peer/tls/server.key
+      - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/crypto/peer/tls/ca.crt
+      - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/crypto/peer/msp
+    ports:
+      - 14051:14051
+    volumes:
+      - ./channel/crypto-config/peerOrganizations/exporter.coffee-chain.net/peers/peer1.exporter.coffee-chain.net/msp:/etc/hyperledger/crypto/peer/msp
+      - ./channel/crypto-config/peerOrganizations/exporter.coffee-chain.net/peers/peer1.exporter.coffee-chain.net/tls:/etc/hyperledger/crypto/peer/tls
+      - /var/run/:/host/var/run/
+      - ./channel/:/etc/hyperledger/channel/
+      - /var/arnold/peer1-exporter:/var/hyperledger/production
+    networks:
+      - coffee
+
+  peer0.importer.coffee-chain.net:
+    container_name: peer0.importer.coffee-chain.net
+    extends:
+      file: base.yaml
+      service: peer-base
+    environment:
+      - FABRIC_LOGGING_SPEC=DEBUG
+      - ORDERER_GENERAL_LOGLEVEL=DEBUG
+      - CORE_PEER_LOCALMSPID=AdminMSP
+
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_test
+
+      - CORE_PEER_ID=peer0.importer.coffee-chain.net
+      - CORE_PEER_ADDRESS=peer0.importer.coffee-chain.net:15051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:15051
+      - CORE_PEER_CHAINCODEADDRESS=peer0.importer.coffee-chain.net:15052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:15052
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.importer.coffee-chain.net:16051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.importer.coffee-chain.net:15051
+
+      # - CORE_OPERATIONS_LISTENADDRESS=0.0.0.0:9440
+
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb8:5984
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=
+      - CORE_METRICS_PROVIDER=prometheus
+      - CORE_PEER_TLS_ENABLED=true
+      - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/crypto/peer/tls/server.crt
+      - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/crypto/peer/tls/server.key
+      - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/crypto/peer/tls/ca.crt
+      - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/crypto/peer/msp
+    
+      - couchdb0
+    ports:
+      - 15051:15051
+    volumes:
+      - ./channel/crypto-config/peerOrganizations/importer.coffee-chain.net/peers/peer0.importer.coffee-chain.net/msp:/etc/hyperledger/crypto/peer/msp
+      - ./channel/crypto-config/peerOrganizations/importer.coffee-chain.net/peers/peer0.importer.coffee-chain.net/tls:/etc/hyperledger/crypto/peer/tls
+      - /var/run/:/host/var/run/
+      - ./channel/:/etc/hyperledger/channel/
+      - /var/arnold/peer0-importer:/var/hyperledger/production
+    networks:
+      - coffee
+
+  peer1.importer.coffee-chain.net:
+    container_name: peer1.importer.coffee-chain.net
+    extends:
+      file: base.yaml
+      service: peer-base
+    environment:
+      - FABRIC_LOGGING_SPEC=DEBUG
+      - ORDERER_GENERAL_LOGLEVEL=debug
+      - CORE_PEER_LOCALMSPID=AdminMSP
+
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_test
+
+      - CORE_PEER_ID=peer1.importer.coffee-chain.net
+      - CORE_PEER_ADDRESS=peer1.importer.coffee-chain.net:16051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:16051
+      - CORE_PEER_CHAINCODEADDRESS=peer1.importer.coffee-chain.net:16052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:16052
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.importer.coffee-chain.net:16051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.importer.coffee-chain.net:15051
+
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb9:5984
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=
+      - CORE_METRICS_PROVIDER=prometheus
+      # - CORE_OPERATIONS_LISTENADDRESS=0.0.0.0:9440
+      - CORE_PEER_TLS_ENABLED=true
+      - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/crypto/peer/tls/server.crt
+      - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/crypto/peer/tls/server.key
+      - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/crypto/peer/tls/ca.crt
+      - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/crypto/peer/msp
+    ports:
+      - 16051:16051
+    volumes:
+      - ./channel/crypto-config/peerOrganizations/importer.coffee-chain.net/peers/peer1.importer.coffee-chain.net/msp:/etc/hyperledger/crypto/peer/msp
+      - ./channel/crypto-config/peerOrganizations/importer.coffee-chain.net/peers/peer1.importer.coffee-chain.net/tls:/etc/hyperledger/crypto/peer/tls
+      - /var/run/:/host/var/run/
+      - ./channel/:/etc/hyperledger/channel/
+      - /var/arnold/peer1-importer:/var/hyperledger/production
+    networks:
+      - coffee
+
+  peer0.processor.coffee-chain.net:
+    container_name: peer0.processor.coffee-chain.net
+    extends:
+      file: base.yaml
+      service: peer-base
+    environment:
+      - FABRIC_LOGGING_SPEC=DEBUG
+      - ORDERER_GENERAL_LOGLEVEL=DEBUG
+      - CORE_PEER_LOCALMSPID=AdminMSP
+
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_test
+
+      - CORE_PEER_ID=peer0.processor.coffee-chain.net
+      - CORE_PEER_ADDRESS=peer0.processor.coffee-chain.net:17051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:17051
+      - CORE_PEER_CHAINCODEADDRESS=peer0.processor.coffee-chain.net:17052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:17052
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.processor.coffee-chain.net:18051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.processor.coffee-chain.net:17051
+
+      # - CORE_OPERATIONS_LISTENADDRESS=0.0.0.0:9440
+
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb10:5984
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=
+      - CORE_METRICS_PROVIDER=prometheus
+      - CORE_PEER_TLS_ENABLED=true
+      - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/crypto/peer/tls/server.crt
+      - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/crypto/peer/tls/server.key
+      - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/crypto/peer/tls/ca.crt
+      - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/crypto/peer/msp
+    
+      - couchdb0
+    ports:
+      - 17051:17051
+    volumes:
+      - ./channel/crypto-config/peerOrganizations/processor.coffee-chain.net/peers/peer0.processor.coffee-chain.net/msp:/etc/hyperledger/crypto/peer/msp
+      - ./channel/crypto-config/peerOrganizations/processor.coffee-chain.net/peers/peer0.processor.coffee-chain.net/tls:/etc/hyperledger/crypto/peer/tls
+      - /var/run/:/host/var/run/
+      - ./channel/:/etc/hyperledger/channel/
+      - /var/arnold/peer0-processor:/var/hyperledger/production
+    networks:
+      - coffee
+
+  peer1.processor.coffee-chain.net:
+    container_name: peer1.processor.coffee-chain.net
+    extends:
+      file: base.yaml
+      service: peer-base
+    environment:
+      - FABRIC_LOGGING_SPEC=DEBUG
+      - ORDERER_GENERAL_LOGLEVEL=debug
+      - CORE_PEER_LOCALMSPID=AdminMSP
+
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_test
+
+      - CORE_PEER_ID=peer1.processor.coffee-chain.net
+      - CORE_PEER_ADDRESS=peer1.processor.coffee-chain.net:18051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:18051
+      - CORE_PEER_CHAINCODEADDRESS=peer1.processor.coffee-chain.net:18052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:18052
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.processor.coffee-chain.net:18051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.processor.coffee-chain.net:17051
+
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb11:5984
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=
+      - CORE_METRICS_PROVIDER=prometheus
+      # - CORE_OPERATIONS_LISTENADDRESS=0.0.0.0:9440
+      - CORE_PEER_TLS_ENABLED=true
+      - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/crypto/peer/tls/server.crt
+      - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/crypto/peer/tls/server.key
+      - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/crypto/peer/tls/ca.crt
+      - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/crypto/peer/msp
+    ports:
+      - 18051:18051
+    volumes:
+      - ./channel/crypto-config/peerOrganizations/processor.coffee-chain.net/peers/peer1.processor.coffee-chain.net/msp:/etc/hyperledger/crypto/peer/msp
+      - ./channel/crypto-config/peerOrganizations/processor.coffee-chain.net/peers/peer1.processor.coffee-chain.net/tls:/etc/hyperledger/crypto/peer/tls
+      - /var/run/:/host/var/run/
+      - ./channel/:/etc/hyperledger/channel/
+      - /var/arnold/peer1-processor:/var/hyperledger/production
+    networks:
+      - coffee

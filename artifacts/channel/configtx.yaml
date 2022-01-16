@@ -105,7 +105,7 @@ Organizations:
             # for cross org gossip communication.  Note, this value is only
             # encoded in the genesis block in the Application section context
             - Host: peer0.inspector.coffee-chain.net
-              Port: 7052
+              Port: 9051
     
 
     - &harvester
@@ -141,7 +141,7 @@ Organizations:
             # for cross org gossip communication.  Note, this value is only
             # encoded in the genesis block in the Application section context
             - Host: peer0.harvester.coffee-chain.net
-              Port: 7053
+              Port: 11051
     
 
     - &exporter
@@ -177,7 +177,7 @@ Organizations:
             # for cross org gossip communication.  Note, this value is only
             # encoded in the genesis block in the Application section context
             - Host: peer0.exporter.coffee-chain.net
-              Port: 7054
+              Port: 13051
 
     - &importer
         # DefaultOrg defines the organization which is used in the sampleconfig
@@ -212,7 +212,7 @@ Organizations:
             # for cross org gossip communication.  Note, this value is only
             # encoded in the genesis block in the Application section context
             - Host: peer0.importer.coffee-chain.net
-              Port: 7055
+              Port: 15051
 
     - &processor
         # DefaultOrg defines the organization which is used in the sampleconfig
@@ -247,7 +247,7 @@ Organizations:
             # for cross org gossip communication.  Note, this value is only
             # encoded in the genesis block in the Application section context
             - Host: peer0.processor.coffee-chain.net
-              Port: 7056
+              Port: 17051
 
 
 ################################################################################
