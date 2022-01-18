@@ -147,10 +147,10 @@ Organizations:
     - &exporter
         # DefaultOrg defines the organization which is used in the sampleconfig
         # of the fabric.git development environment
-        Name: ExpoerterMSP
+        Name: ExporterMSP
 
         # ID to load the MSP definition as
-        ID: ExpoerterMSP
+        ID: ExporterMSP
 
         MSPDir: crypto-config/peerOrganizations/exporter.coffee-chain.net/msp
 
@@ -160,16 +160,16 @@ Organizations:
         Policies:
             Readers:
                 Type: Signature
-                Rule: "OR('ExpoerterMSP.admin', 'ExpoerterMSP.peer', 'ExpoerterMSP.client')"
+                Rule: "OR('ExporterMSP.admin', 'ExporterMSP.peer', 'ExporterMSP.client')"
             Writers:
                 Type: Signature
-                Rule: "OR('ExpoerterMSP.admin', 'ExpoerterMSP.client')"
+                Rule: "OR('ExporterMSP.admin', 'ExporterMSP.client')"
             Admins:
                 Type: Signature
-                Rule: "OR('ExpoerterMSP.admin')"
+                Rule: "OR('ExporterMSP.admin')"
             Endorsement:
                 Type: Signature
-                Rule: "OR('ExpoerterMSP.peer')"
+                Rule: "OR('ExporterMSP.peer')"
 
     # leave this flag set to true.
         AnchorPeers:
