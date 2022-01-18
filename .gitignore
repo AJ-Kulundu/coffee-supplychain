@@ -8,3 +8,4 @@ artifacts/channel/InspectorMSPanchors.tx
 artifacts/channel/ProcessorMSPanchors.tx
 artifacts/channel/genesis.block
 artifacts/channel/mychannel.tx
+channel-artifacts/
