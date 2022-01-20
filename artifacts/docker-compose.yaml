@@ -308,7 +308,7 @@ services:
       - ORDERER_GENERAL_LOGLEVEL=DEBUG
       - CORE_PEER_LOCALMSPID=AdminMSP
 
-      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_test
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_coffee
 
       - CORE_PEER_ID=peer0.admin.coffee-chain.net
       - CORE_PEER_ADDRESS=peer0.admin.coffee-chain.net:7051
@@ -353,7 +353,7 @@ services:
       - ORDERER_GENERAL_LOGLEVEL=debug
       - CORE_PEER_LOCALMSPID=AdminMSP
 
-      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_test
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_coffee
 
       - CORE_PEER_ID=peer1.admin.coffee-chain.net
       - CORE_PEER_ADDRESS=peer1.admin.coffee-chain.net:8051
@@ -395,7 +395,7 @@ services:
       - ORDERER_GENERAL_LOGLEVEL=DEBUG
       - CORE_PEER_LOCALMSPID=InspectorMSP
 
-      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_test
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_coffee
 
       - CORE_PEER_ID=peer0.inspector.coffee-chain.net
       - CORE_PEER_ADDRESS=peer0.inspector.coffee-chain.net:9051
@@ -438,7 +438,7 @@ services:
       - ORDERER_GENERAL_LOGLEVEL=debug
       - CORE_PEER_LOCALMSPID=InspectorMSP
 
-      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_test
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_coffee
 
       - CORE_PEER_ID=peer1.inspector.coffee-chain.net
       - CORE_PEER_ADDRESS=peer1.inspector.coffee-chain.net:10051
@@ -478,9 +478,9 @@ services:
     environment:
       - FABRIC_LOGGING_SPEC=DEBUG
       - ORDERER_GENERAL_LOGLEVEL=DEBUG
-      - CORE_PEER_LOCALMSPID=AdminMSP
+      - CORE_PEER_LOCALMSPID=HarvesterMSP
 
-      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_test
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_coffee
 
       - CORE_PEER_ID=peer0.harvester.coffee-chain.net
       - CORE_PEER_ADDRESS=peer0.harvester.coffee-chain.net:11051
@@ -522,9 +522,9 @@ services:
     environment:
       - FABRIC_LOGGING_SPEC=DEBUG
       - ORDERER_GENERAL_LOGLEVEL=debug
-      - CORE_PEER_LOCALMSPID=AdminMSP
+      - CORE_PEER_LOCALMSPID=HarvesterMSP
 
-      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_test
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_coffee
 
       - CORE_PEER_ID=peer1.harvester.coffee-chain.net
       - CORE_PEER_ADDRESS=peer1.harvester.coffee-chain.net:12051
@@ -564,9 +564,9 @@ services:
     environment:
       - FABRIC_LOGGING_SPEC=DEBUG
       - ORDERER_GENERAL_LOGLEVEL=DEBUG
-      - CORE_PEER_LOCALMSPID=AdminMSP
+      - CORE_PEER_LOCALMSPID=ExporterMSP
 
-      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_test
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_coffee
 
       - CORE_PEER_ID=peer0.exporter.coffee-chain.net
       - CORE_PEER_ADDRESS=peer0.exporter.coffee-chain.net:13051
@@ -609,9 +609,9 @@ services:
     environment:
       - FABRIC_LOGGING_SPEC=DEBUG
       - ORDERER_GENERAL_LOGLEVEL=debug
-      - CORE_PEER_LOCALMSPID=AdminMSP
+      - CORE_PEER_LOCALMSPID=ExporterMSP
 
-      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_test
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_coffee
 
       - CORE_PEER_ID=peer1.exporter.coffee-chain.net
       - CORE_PEER_ADDRESS=peer1.exporter.coffee-chain.net:14051
@@ -651,9 +651,9 @@ services:
     environment:
       - FABRIC_LOGGING_SPEC=DEBUG
       - ORDERER_GENERAL_LOGLEVEL=DEBUG
-      - CORE_PEER_LOCALMSPID=AdminMSP
+      - CORE_PEER_LOCALMSPID=ImporterMSP
 
-      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_test
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_coffee
 
       - CORE_PEER_ID=peer0.importer.coffee-chain.net
       - CORE_PEER_ADDRESS=peer0.importer.coffee-chain.net:15051
@@ -696,9 +696,9 @@ services:
     environment:
       - FABRIC_LOGGING_SPEC=DEBUG
       - ORDERER_GENERAL_LOGLEVEL=debug
-      - CORE_PEER_LOCALMSPID=AdminMSP
+      - CORE_PEER_LOCALMSPID=ImporterMSP
 
-      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_test
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_coffee
 
       - CORE_PEER_ID=peer1.importer.coffee-chain.net
       - CORE_PEER_ADDRESS=peer1.importer.coffee-chain.net:16051
@@ -738,9 +738,9 @@ services:
     environment:
       - FABRIC_LOGGING_SPEC=DEBUG
       - ORDERER_GENERAL_LOGLEVEL=DEBUG
-      - CORE_PEER_LOCALMSPID=AdminMSP
+      - CORE_PEER_LOCALMSPID=ProcessorMSP
 
-      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_test
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_coffee
 
       - CORE_PEER_ID=peer0.processor.coffee-chain.net
       - CORE_PEER_ADDRESS=peer0.processor.coffee-chain.net:17051
@@ -783,9 +783,9 @@ services:
     environment:
       - FABRIC_LOGGING_SPEC=DEBUG
       - ORDERER_GENERAL_LOGLEVEL=debug
-      - CORE_PEER_LOCALMSPID=AdminMSP
+      - CORE_PEER_LOCALMSPID=ProcessorMSP
 
-      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_test
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_coffee
 
       - CORE_PEER_ID=peer1.processor.coffee-chain.net
       - CORE_PEER_ADDRESS=peer1.processor.coffee-chain.net:18051
